@@ -24,6 +24,7 @@ echo '@xset s off' | sudo tee --append /etc/xdg/lxsession/LXDE-pi/autostart
 echo '@xset s -dpms' | sudo tee --append /etc/xdg/lxsession/LXDE-pi/autostart
 echo '@xset s noblank' | sudo tee --append /etc/xdg/lxsession/LXDE-pi/autostart
 echo "@sed -i 's/\"exited_cleanly\": false/\"exited_cleanly\": true/' ~/.config/chromium/Default/Preferences" | sudo tee --append /etc/xdg/lxsession/LXDE-pi/autostart
+echo '@rm ~/.config/chromium/SingletonLock' | sudo tee --append /etc/xdg/lxsession/LXDE-pi/autostart
 echo '@chromium --noerrdialogs --kiosk http://status.packet.net --incognito' | sudo tee --append /etc/xdg/lxsession/LXDE-pi/autostart
 
 # move node.js app over
