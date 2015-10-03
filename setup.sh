@@ -3,8 +3,12 @@
 # todo: setup hostname
 
 sudo rpi-update
-curl -sLS https://apt.adafruit.com/add | sudo bash
+echo "deb http://apt.adafruit.com/raspbian/ wheezy main" | sudo tee --append /etc/apt/sources.list
+wget -O - -q https://apt.adafruit.com/apt.adafruit.com.gpg.key | sudo apt-key add -
+
 sudo aptitude update
+sudo aptitude purge wolfram-engine
+sudo aptitude upgrade
 sudo aptitude -y install lirc node chromium x11-xserver-utils unclutter
 
 # setup gpio pins and lirc

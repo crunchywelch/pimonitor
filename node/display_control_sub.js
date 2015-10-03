@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// nohup node node/display_control_sub.js `hostname` &
+
 var exec = require('child_process').exec;
 function puts(err, stderr, stdout) {
   if(err) {
