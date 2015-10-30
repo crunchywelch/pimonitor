@@ -1,3 +1,4 @@
+#!/bin/bash
 ### BEGIN INIT INFO
 # Provides:          display_control
 # Required-Start:    $network
@@ -8,7 +9,6 @@
 # Description:       init script for the display_control_sub.js node application
 ### END INIT INFO
 
-#!/bin/bash
 DIR=/home/pi/node
 NODE=/usr/local/bin/node
 HOSTNAME=`hostname`
@@ -16,11 +16,19 @@ HOSTNAME=`hostname`
 test -x $NODE || exit 0
 
 function start_app {
+  if [ -f /var/run/display_control.pid ]
+  then
+    exit 0
+  fi
   NODE_ENV=production nohup $NODE $DIR/display_control_sub.js $HOSTNAME 1>>"/var/log/display_control.log" 2>&1 & echo $! > "/var/run/display_control.pid"
 }
 
 function stop_app {
-  sudo kill `cat /var/run/display_control.pid`
+  if [ -f /var/run/display_control.pid ]
+  then
+    sudo kill `cat /var/run/display_control.pid`
+    rm /var/run/display_control.pid
+  fi
 }
 
 case $1 in

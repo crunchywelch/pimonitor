@@ -35,8 +35,8 @@ echo '@rm ~/.config/chromium/SingletonLock' | sudo tee --append /etc/xdg/lxsessi
 echo '@midori -i 120 -e Fullscreen -p -a http://status.packet.net' | sudo tee --append /etc/xdg/lxsession/LXDE-pi/autostart
 
 # install display_control service file
-cp display_control /etc/init.d
-ln -s ../init.d/display_control /etc/rc2.d/S01display_control
+sudo cp display_control /etc/init.d/
+sudo update-rc.d display_control defaults
 
 # move node.js app over
 rsync -avz node ~/
